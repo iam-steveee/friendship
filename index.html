@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8dce6">
+  <meta name="description" content="A little letter from Steve. Maybe the start of a friendship.">
+  <title>A Letter for You | Steve</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <main>
+    <section class="welcome" id="welcome" aria-labelledby="welcome-title">
+      <div class="welcome-card">
+        <p class="eyebrow">A little something for you</p>
+        <h1 id="welcome-title">You've got a letter</h1>
+        <p class="welcome-copy">Someone has a few words they'd like you to read.</p>
+        <button class="envelope-button" id="open-letter" type="button" aria-label="Open your friendship letter">
+          <span class="envelope" aria-hidden="true">
+            <span class="envelope-back"></span>
+            <span class="letter-peek"><span>for you</span><span class="tiny-heart">♡</span></span>
+            <span class="envelope-front"></span>
+            <span class="envelope-flap"></span>
+            <span class="wax-seal">♡</span>
+          </span>
+          <span class="open-hint">Tap the letter to open it</span>
+        </button>
+        <p class="small-note">A tiny note, from Steve to you.</p>
+      </div>
+    </section>
+
+    <section class="letter-section" id="letter-section" hidden aria-labelledby="letter-title">
+      <article class="letter-paper">
+        <div class="letter-top">
+          <span class="little-sparkle" aria-hidden="true">✧</span>
+          <p class="eyebrow">A note from me to you</p>
+          <span class="little-sparkle" aria-hidden="true">✧</span>
+        </div>
+        <h2 id="letter-title">Hi, there.</h2>
+
+        <div class="letter-body">
+          <p>I am Steve. That's not my real name, but you can call me that.</p>
+          <p>If I shared this link with you, it means you might be someone I'd like to be friends with, or someone I'd like to get to know a little before we become friends. Basically, I want us to be friends.</p>
+          <p>Why friends? I am on a <em>MISSION</em>, collecting friends and building an army so I can get your vote and become Prime Minister with your help...</p>
+          <p class="joke-line">Awww, just kidding. LOL. Not that.</p>
+          <p>I just want to be friends. I want someone who stands by me, talks to me, and shares little moments with me. I'm a keyboard warrior, so you might have to read my very long paragraphs. But hey, you might actually enjoy them, because they'll probably be about you and how amazing you are, and about how friendship can mean more than just calling someone a friend.</p>
+          <p>I love making friends, and I'm looking for friends here because I haven't really been able to make many in real life. :) I'm an introvert and an overthinker trying to find people I can talk to, people who support each other, and people who can be there for one another during good and bad times.</p>
+          <p>So, please don't ignore me after reading this. I wrote this little letter for you, and I hope it makes you smile. Thank you for taking the time to read it.</p>
+        </div>
+
+        <div class="signature-block">
+          <p class="signoff">Your friend,</p>
+          <p class="signature">Steve</p>
+        </div>
+
+        <div class="flower-divider" aria-hidden="true"><span>♡</span> <span>✿</span> <span>♡</span></div>
+
+        <div class="form-invitation" aria-live="polite">
+          <p class="invitation-copy" id="invitation-copy">After clicking this button, it will take you to a little form. Will you please, please, please give me five minutes of your time to fill it out?</p>
+          <button class="cta-button" id="form-button" type="button">
+            <span id="button-label">Read Before Clicking Me</span>
+            <span class="button-heart" aria-hidden="true">♡</span>
+          </button>
+          <p class="tiny-footnote" id="button-footnote">No pressure. Just a little step toward getting to know each other.</p>
+        </div>
+      </article>
+      <footer class="page-footer">made with care by Steve <span aria-hidden="true">♡</span></footer>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+@font-face {
+  font-family: "Stay With Me";
+  src: url("assets/fonts/stay-with-me.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Photograph Signature";
+  src: url("assets/fonts/photograph-signature.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gossamer Body";
+  src: url("assets/fonts/childs-journal.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Handwriting";
+  src: url("assets/fonts/handwriting-regular.otf") format("opentype");
+  font-display: swap;
+}
+
+:root {
+  --rose: #c54c7b;
+  --rose-dark: #8d3158;
+  --rose-soft: #f6d5e1;
+  --ink: #65414f;
+  --paper: rgba(255, 249, 251, .88);
+  --gold: #b58b55;
+}
+* { box-sizing: border-box; }
+html { min-height: 100%; scroll-behavior: smooth; }
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  font-family: "Handwriting", "Gossamer Body", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.8;
+  background-color: #f9e3eb;
+  background-image: linear-gradient(rgba(255, 244, 248, .16), rgba(255, 244, 248, .16)), url("assets/background-mobile.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+button { font: inherit; }
+button:focus-visible { outline: 3px solid #a6426d; outline-offset: 5px; }
+[hidden] { display: none !important; }
+
+.ambient {
+  position: fixed; width: 240px; height: 240px; border-radius: 50%;
+  filter: blur(55px); opacity: .26; pointer-events: none; z-index: -1;
+  background: #f1a9c6;
+}
+.ambient-one { top: -100px; right: -70px; }
+.ambient-two { bottom: -130px; left: -90px; background: #fff4f8; }
+
+main { width: 100%; min-height: 100vh; }
+.welcome {
+  min-height: 100svh; display: grid; place-items: center;
+  padding: 28px 16px;
+  animation: fade-in .8s ease both;
+}
+.welcome-card {
+  width: min(100%, 570px); text-align: center; padding: clamp(24px, 6vw, 48px) 20px;
+  border: 1px solid rgba(255,255,255,.78); border-radius: 28px;
+  background: rgba(255, 248, 251, .64);
+  box-shadow: 0 18px 65px rgba(126, 55, 82, .12);
+  backdrop-filter: blur(7px);
+}
+.eyebrow {
+  margin: 0; color: #a65374; font-family: "Handwriting", cursive;
+  font-size: 1.08rem; letter-spacing: .04em;
+}
+h1, h2 {
+  font-family: "Stay With Me", "Handwriting", cursive;
+  font-weight: 400; color: var(--rose-dark); line-height: 1.15;
+}
+h1 { margin: 10px 0 12px; font-size: clamp(2.6rem, 8vw, 4.3rem); }
+.welcome-copy { margin: 0 auto 18px; max-width: 360px; }
+.envelope-button {
+  display: flex; align-items: center; flex-direction: column; gap: 16px;
+  width: 100%; border: 0; background: transparent; color: var(--rose-dark);
+  cursor: pointer; padding: 12px 0 8px;
+}
+.envelope {
+  width: min(76vw, 290px); aspect-ratio: 1.42; position: relative;
+  display: block; filter: drop-shadow(0 13px 12px rgba(115, 44, 73, .16));
+  transition: transform .3s ease;
+}
+.envelope-button:hover .envelope { transform: translateY(-4px) rotate(-1deg); }
+.envelope-back, .envelope-front, .envelope-flap {
+  position: absolute; inset: 0; border-radius: 12px;
+}
+.envelope-back { background: #eaa3bd; }
+.letter-peek {
+  position: absolute; z-index: 1; left: 9%; right: 9%; top: 4%; height: 86%;
+  background: #fff8fb; border: 1px solid #f3cbd9; border-radius: 5px;
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  font-family: "Stay With Me", cursive; font-size: 2rem; color: #b64d78;
+  transition: transform .85s cubic-bezier(.2,.75,.2,1), opacity .4s;
+}
+.tiny-heart { font-size: 1.2rem; line-height: 1; }
+.envelope-front {
+  z-index: 2; background: #e98eae;
+  clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
+}
+.envelope-flap {
+  z-index: 3; background: #f4b4ca;
+  clip-path: polygon(0 0, 100% 0, 50% 60%);
+  transform-origin: top center; transition: transform .65s ease;
+}
+.wax-seal {
+  position: absolute; z-index: 4; left: 50%; top: 52%; transform: translate(-50%,-50%);
+  width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%;
+  background: #b94472; color: #fff1f6; border: 2px solid #f4c6d6;
+  font-size: 24px; box-shadow: 0 3px 8px #a44c6a55;
+  transition: opacity .3s, transform .3s;
+}
+.open-hint { font-size: .95rem; opacity: .86; }
+.small-note { margin: 14px 0 0; font-size: .82rem; opacity: .72; }
+.welcome.opening .envelope-flap { transform: rotateX(180deg); }
+.welcome.opening .wax-seal { opacity: 0; transform: translate(-50%,-50%) scale(.5); }
+.welcome.opening .letter-peek { transform: translateY(-58%); }
+.welcome.leaving { animation: fade-out .65s ease forwards; pointer-events: none; }
+
+.letter-section { width: 100%; padding: clamp(18px, 4vw, 42px) 14px 24px; animation: rise-in .9s cubic-bezier(.2,.75,.2,1) both; }
+.letter-paper {
+  position: relative; isolation: isolate; overflow: hidden;
+  width: min(100%, 790px); margin: 0 auto; padding: clamp(24px, 6vw, 58px);
+  border: 1px solid rgba(255,255,255,.8); border-radius: 8px 8px 18px 18px;
+  background: var(--paper); box-shadow: 0 22px 75px rgba(105, 44, 69, .15);
+  backdrop-filter: blur(3px);
+}
+.letter-paper::before {
+  content: ""; position: absolute; z-index: -1; inset: 10px;
+  border: 1px solid rgba(190, 133, 155, .26); border-radius: 5px; pointer-events: none;
+}
+.letter-top { display: flex; align-items: center; justify-content: center; gap: 13px; }
+.little-sparkle { color: var(--gold); font-size: 1.5rem; }
+h2 { text-align: center; font-size: clamp(2.6rem, 8vw, 4.2rem); margin: 8px 0 24px; }
+.letter-body { font-size: clamp(1.03rem, 2.3vw, 1.18rem); line-height: 1.9; }
+.letter-body p { margin: 0 0 1.1em; }
+.letter-body em { color: #b83f72; font-style: normal; font-weight: bold; letter-spacing: .07em; }
+.joke-line { color: #a0446b; }
+.signature-block { margin: 25px 0 8px; text-align: right; }
+.signoff { margin: 0; font-size: .95rem; }
+.signature { margin: -6px 0 0; font-family: "Photograph Signature", cursive; font-size: clamp(3.3rem, 10vw, 5rem); line-height: 1.25; color: #9e3d67; }
+.flower-divider { display: flex; justify-content: center; gap: 16px; margin: 20px 0 25px; color: #bd7d98; font-size: 1.2rem; }
+.form-invitation { text-align: center; max-width: 590px; margin: 0 auto; }
+.invitation-copy { margin: 0 auto 23px; font-size: clamp(1.02rem, 2.4vw, 1.15rem); line-height: 1.8; transition: opacity .25s, transform .25s; }
+.cta-button {
+  position: relative; display: inline-flex; justify-content: center; align-items: center; gap: 12px;
+  max-width: 100%; padding: 14px 25px; border: 1px solid rgba(255,255,255,.8); border-radius: 999px;
+  background: linear-gradient(135deg, #d96391, #b94275); color: white;
+  box-shadow: 0 9px 22px rgba(172, 59, 105, .24), inset 0 1px 0 #ffffff55;
+  cursor: pointer; line-height: 1.35; font-size: 1rem; font-weight: 600;
+  animation: pulse 1.8s ease-in-out infinite;
+  transition: transform .2s ease, box-shadow .2s ease, background .25s ease;
+}
+.cta-button:hover { transform: translateY(-2px) scale(1.025); box-shadow: 0 12px 28px rgba(172,59,105,.3); }
+.cta-button:active { transform: scale(.97); }
+.cta-button.is-second { background: linear-gradient(135deg, #b94a79, #92335e); animation-duration: 1.45s; }
+.button-heart { font-size: 1.25rem; line-height: 1; }
+.tiny-footnote { margin: 15px 0 0; font-size: .85rem; opacity: .78; }
+.page-footer { width: min(100%, 790px); margin: 0 auto; padding: 16px; text-align: center; font-size: .86rem; color: #874864; }
+.page-footer span { color: #c34f7e; }
+.toast {
+  position: fixed; left: 50%; bottom: 20px; z-index: 10; transform: translate(-50%, 20px);
+  width: max-content; max-width: calc(100% - 32px); padding: 10px 16px; border-radius: 999px;
+  color: #fff; background: #7d3454; box-shadow: 0 6px 20px #53243a33;
+  font-size: .88rem; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s;
+}
+.toast.visible { opacity: 1; transform: translate(-50%, 0); }
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 9px 22px rgba(172,59,105,.23), 0 0 0 0 rgba(208,83,132,.18); }
+  50% { transform: scale(1.035); box-shadow: 0 12px 25px rgba(172,59,105,.27), 0 0 0 9px rgba(208,83,132,0); }
+}
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fade-out { to { opacity: 0; transform: scale(.97); filter: blur(3px); } }
+@keyframes rise-in { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (min-width: 760px) {
+  body {
+    background-image: linear-gradient(rgba(255, 245, 249, .12), rgba(255, 245, 249, .12)), url("assets/background-desktop.png");
+    background-size: cover; background-position: center center;
+  }
+  .welcome-card { background: rgba(255, 249, 251, .73); }
+  .letter-section { padding-top: 36px; }
+  .letter-paper { padding: clamp(42px, 5vw, 68px); }
+}
+@media (max-width: 420px) {
+  body { font-size: 16px; background-attachment: scroll; }
+  .welcome-card { padding-inline: 16px; border-radius: 22px; }
+  .letter-section { padding: 10px 8px 18px; }
+  .letter-paper { padding: 25px 22px; }
+  .cta-button { padding: 13px 17px; font-size: .95rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
