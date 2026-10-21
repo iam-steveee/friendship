@@ -22,15 +22,24 @@
   openButton.addEventListener("click", () => {
     if (opening) return;
     opening = true;
+
+    // 1) Envelope flap opens first.
     welcome.classList.add("opening");
+
+    // 2) After a short pause, the note slides out.
     window.setTimeout(() => {
-      welcome.classList.add("leaving");
+      welcome.classList.add("note-out");
+
+      // 3) Let the note be seen for a moment, then fade to the letter.
       window.setTimeout(() => {
-        welcome.hidden = true;
-        letterSection.hidden = false;
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 500);
-    }, 650);
+        welcome.classList.add("leaving");
+        window.setTimeout(() => {
+          welcome.hidden = true;
+          letterSection.hidden = false;
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 650);
+      }, 1500);
+    }, 950);
   });
 
   formButton.addEventListener("click", () => {
