@@ -19,27 +19,35 @@
     window.setTimeout(() => toast.classList.remove("visible"), 1800);
   }
 
+  const note = document.getElementById("env-note");
+
+  function showLetter() {
+    welcome.hidden = true;
+    letterSection.hidden = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   openButton.addEventListener("click", () => {
     if (opening) return;
     opening = true;
 
-    // 1) Envelope flap opens first.
+    // The whole sequence runs in CSS (flap folds, flap unfolds, short pause, note slides out).
     welcome.classList.add("opening");
 
-    // 2) After a short pause, the note slides out.
-    window.setTimeout(() => {
-      welcome.classList.add("note-out");
-
-      // 3) Let the note be seen for a moment, then fade to the letter.
+    let finished = false;
+    function leave() {
+      if (finished) return;
+      finished = true;
+      // Small pause so the note can be seen, then fade into the letter.
       window.setTimeout(() => {
         welcome.classList.add("leaving");
-        window.setTimeout(() => {
-          welcome.hidden = true;
-          letterSection.hidden = false;
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }, 650);
-      }, 1500);
-    }, 950);
+        window.setTimeout(showLetter, 620);
+      }, 550);
+    }
+
+    // Go once the note has finished sliding out (with a safety fallback).
+    note.addEventListener("animationend", leave, { once: true });
+    window.setTimeout(leave, 3600);
   });
 
   formButton.addEventListener("click", () => {

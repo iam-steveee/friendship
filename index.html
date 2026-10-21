@@ -19,12 +19,15 @@
         <h1 id="welcome-title">You've got a letter</h1>
         <p class="welcome-copy">Someone has a few words they'd like you to read.</p>
         <button class="envelope-button" id="open-letter" type="button" aria-label="Open your friendship letter">
-          <span class="envelope" aria-hidden="true">
-            <span class="envelope-back"></span>
-            <span class="letter-peek"><span>for you</span><span class="tiny-heart">♡</span></span>
-            <span class="envelope-front"></span>
-            <span class="envelope-flap"></span>
-            <span class="wax-seal">♡</span>
+          <span class="envelope-stage" aria-hidden="true">
+            <span class="envelope">
+              <span class="env-back"></span>
+              <svg class="env-flap-open" viewBox="0 0 300 78" preserveAspectRatio="none" focusable="false"><path d="M0 78 L150 0 L300 78 Z"/></svg>
+              <span class="env-note" id="env-note"><span class="note-text">for you</span><span class="note-heart">♡</span></span>
+              <svg class="env-pocket" viewBox="0 0 300 204" preserveAspectRatio="none" focusable="false"><path d="M0 12 L150 112 L300 12 L300 192 Q300 204 288 204 L12 204 Q0 204 0 192 Z"/></svg>
+              <svg class="env-flap-closed" viewBox="0 0 300 116" preserveAspectRatio="none" focusable="false"><path d="M0 12 Q0 0 12 0 L288 0 Q300 0 300 12 L150 116 Z"/></svg>
+              <span class="env-seal">♡</span>
+            </span>
           </span>
           <span class="open-hint">Tap the letter to open it</span>
         </button>
