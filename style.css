@@ -82,35 +82,38 @@ h1 { margin: 10px 0 12px; font-size: clamp(2.6rem, 8vw, 4.3rem); }
   display: flex; align-items: center; flex-direction: column; gap: 16px;
   width: 100%; border: 0; background: transparent; color: var(--rose-dark);
   cursor: pointer; padding: 12px 0 8px;
+  -webkit-tap-highlight-color: transparent; outline: none;
 }
+.envelope-button:focus-visible { outline: 2px solid #c34f7e; outline-offset: 6px; border-radius: 14px; }
 .envelope {
   width: min(76vw, 290px); aspect-ratio: 1.42; position: relative;
-  display: block; filter: drop-shadow(0 13px 12px rgba(115, 44, 73, .16));
+  display: block;
   transition: transform .3s ease;
 }
-.envelope-button:hover .envelope { transform: translateY(-4px) rotate(-1deg); }
+@media (hover: hover) { .welcome:not(.opening) .envelope-button:hover .envelope { transform: translateY(-4px) rotate(-1deg); } }
 .envelope-back, .envelope-front, .envelope-flap {
   position: absolute; inset: 0; border-radius: 12px;
 }
-.envelope-back { background: #eaa3bd; }
+.envelope-back { background: #eaa3bd; box-shadow: 0 13px 24px rgba(115, 44, 73, .16); }
 .letter-peek {
   position: absolute; z-index: 1; left: 9%; right: 9%; top: 4%; height: 86%;
   background: #fff8fb; border: 1px solid #f3cbd9; border-radius: 5px;
   display: flex; align-items: center; justify-content: center; flex-direction: column;
   font-family: "Stay With Me", cursive; font-size: 2rem; color: #b64d78;
   transition: transform .85s cubic-bezier(.2,.75,.2,1), opacity .4s;
-  will-change: transform;
 }
 .tiny-heart { font-size: 1.2rem; line-height: 1; }
 .envelope-front {
-  z-index: 2; background: #e98eae;
-  clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
+  z-index: 2;
+  background:
+    linear-gradient(to top right, #e98eae calc(50% - .6px), transparent calc(50% + .6px)) 0 0 / 50.2% 58% no-repeat,
+    linear-gradient(to top left, #e98eae calc(50% - .6px), transparent calc(50% + .6px)) 100% 0 / 50.2% 58% no-repeat,
+    linear-gradient(#e98eae, #e98eae) 0 100% / 100% 43% no-repeat;
 }
 .envelope-flap {
   z-index: 3; background: #f4b4ca;
   clip-path: polygon(0 0, 100% 0, 50% 60%);
-  transform-origin: top center; transition: transform .65s ease, z-index 0s linear .33s;
-  will-change: transform;
+  transform-origin: top center; transition: transform .65s ease;
 }
 .wax-seal {
   position: absolute; z-index: 4; left: 50%; top: 52%; transform: translate(-50%,-50%);
@@ -121,7 +124,8 @@ h1 { margin: 10px 0 12px; font-size: clamp(2.6rem, 8vw, 4.3rem); }
 }
 .open-hint { font-size: .95rem; opacity: .86; }
 .small-note { margin: 14px 0 0; font-size: .82rem; opacity: .72; }
-.welcome.opening .envelope-flap { transform: rotateX(180deg); z-index: 0; }
+.welcome.opening .envelope-flap { transform: rotateX(180deg); }
+.welcome.note-out .envelope-flap { z-index: 0; }
 .welcome.opening .wax-seal { opacity: 0; transform: translate(-50%,-50%) scale(.5); }
 .welcome.note-out .letter-peek { transform: translateY(-58%); }
 .welcome.leaving { animation: fade-out .65s ease forwards; pointer-events: none; }
@@ -180,7 +184,7 @@ h2 { text-align: center; font-size: clamp(2.6rem, 8vw, 4.2rem); margin: 8px 0 24
   50% { transform: scale(1.035); box-shadow: 0 12px 25px rgba(172,59,105,.27), 0 0 0 9px rgba(208,83,132,0); }
 }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-@keyframes fade-out { to { opacity: 0; transform: scale(.97); filter: blur(3px); } }
+@keyframes fade-out { to { opacity: 0; transform: scale(.97); } }
 @keyframes rise-in { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
 
 @media (min-width: 760px) {
