@@ -25,6 +25,7 @@
 <body>
   <div class="ambient ambient-one" aria-hidden="true"></div>
   <div class="ambient ambient-two" aria-hidden="true"></div>
+  <div class="petals" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
 
   <main>
     <section class="welcome" id="welcome" aria-labelledby="welcome-title">
@@ -54,7 +55,7 @@
         <div class="letter-top">
           <span class="little-sparkle" aria-hidden="true">✧</span>
           <p class="eyebrow">A note from me to you</p>
-          <span class="little-sparkle" aria-hidden="true">✧</span>
+          <button class="little-sparkle secret-star" id="secret-star" type="button" aria-haspopup="dialog" aria-label="Open a tiny secret note">✧</button>
         </div>
         <h2 id="letter-title">Hi, there.</h2>
 
@@ -79,6 +80,11 @@
           <p>And who knows? Maybe this little letter will be the beginning of a friendship neither of us expected.</p>
         </div>
 
+        <div class="final-message" id="final-message">
+          <span class="final-star" aria-hidden="true">✦</span>
+          <p class="final-text">You came here as someone who knows a little about me. Maybe you'll leave as someone who knows me a little better.</p>
+        </div>
+
         <div class="signature-block">
           <p class="signoff">Your friend,</p>
           <p class="signature">Steve</p>
@@ -98,6 +104,14 @@
       <footer class="page-footer">made with care by Steve <span aria-hidden="true">♡</span></footer>
     </section>
   </main>
+
+  <div class="secret-overlay" id="secret-overlay">
+    <div class="secret-note" role="dialog" aria-modal="true" aria-label="A tiny secret note" tabindex="-1">
+      <button class="secret-close" id="secret-close" type="button" aria-label="Close note"></button>
+      <span class="secret-mark" aria-hidden="true">✦</span>
+      <p class="secret-text">Since you found this, here's a little reminder: you don't have to be extraordinary to be appreciated.</p>
+    </div>
+  </div>
 
   <audio id="background-music" src="assets/background-music.mp3" preload="auto" loop></audio>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>

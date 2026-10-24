@@ -16,6 +16,8 @@
   const toast = document.getElementById("toast");
   const note = document.getElementById("env-note");
   const music = document.getElementById("background-music");
+  const finalMessage = document.getElementById("final-message");
+  const root = document.documentElement;
   let hasClickedOnce = false;
   let opening = false;
   let typingStarted = false;
@@ -58,6 +60,33 @@
     });
   }
 
+  function revealRest(delay) {
+    [signatureBlock, flowerDivider, formInvitation].forEach((element, index) => {
+      window.setTimeout(() => element.classList.add("is-revealed"), delay + index * 420);
+    });
+  }
+
+  // The closing message appears once, as soon as the reader reaches (or scrolls past) it.
+  function armFinale() {
+    let queued = false;
+    function check() {
+      queued = false;
+      if (finalMessage.getBoundingClientRect().top > window.innerHeight * 0.88) return;
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      finalMessage.classList.add("is-revealed");
+      revealRest(900);
+    }
+    function onScroll() {
+      if (queued) return;
+      queued = true;
+      window.requestAnimationFrame(check);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
+  }
+
   function typeLetter() {
     prepareTyping();
     const paragraphs = Array.from(letterBody.querySelectorAll("p"));
@@ -65,7 +94,7 @@
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) {
       textNodes.forEach((node) => { node.textContent = node.dataset.fullText; });
-      [signatureBlock, flowerDivider, formInvitation].forEach((element) => element.classList.add("is-revealed"));
+      [finalMessage, signatureBlock, flowerDivider, formInvitation].forEach((element) => element.classList.add("is-revealed"));
       return;
     }
 
@@ -74,9 +103,7 @@
     let current = textNodes[nodeIndex];
     const typeNext = () => {
       if (!current) {
-        [signatureBlock, flowerDivider, formInvitation].forEach((element, index) => {
-          window.setTimeout(() => element.classList.add("is-revealed"), index * 420);
-        });
+        armFinale();
         return;
       }
       const fullText = current.dataset.fullText || "";
@@ -142,5 +169,47 @@
       return;
     }
     window.location.href = formUrl;
+  });
+  // ---------- Secret note ----------
+  const secretStar = document.getElementById("secret-star");
+  const secretOverlay = document.getElementById("secret-overlay");
+  const secretClose = document.getElementById("secret-close");
+  const mainContent = document.querySelector("main");
+  let secretOpen = false;
+  let pressStartedInside = false;
+  let returnFocus = null;
+
+  function openSecret() {
+    if (secretOpen) return;
+    secretOpen = true;
+    returnFocus = document.activeElement;
+    root.style.setProperty("--sbw", Math.max(0, window.innerWidth - root.clientWidth) + "px");
+    root.classList.add("secret-open");
+    mainContent.inert = true;
+    secretOverlay.classList.add("is-open");
+    secretClose.focus({ preventScroll: true });
+  }
+
+  function closeSecret() {
+    if (!secretOpen) return;
+    secretOpen = false;
+    secretOverlay.classList.remove("is-open");
+    root.classList.remove("secret-open");
+    root.style.removeProperty("--sbw");
+    mainContent.inert = false;
+    if (returnFocus && returnFocus.focus) returnFocus.focus({ preventScroll: true });
+  }
+
+  secretStar.addEventListener("click", openSecret);
+  secretClose.addEventListener("click", closeSecret);
+  secretOverlay.addEventListener("pointerdown", (event) => { pressStartedInside = event.target !== secretOverlay; });
+  secretOverlay.addEventListener("click", (event) => {
+    if (event.target === secretOverlay && !pressStartedInside) closeSecret();
+    pressStartedInside = false;
+  });
+  document.addEventListener("keydown", (event) => {
+    if (!secretOpen) return;
+    if (event.key === "Escape") { event.preventDefault(); closeSecret(); }
+    else if (event.key === "Tab") { event.preventDefault(); secretClose.focus({ preventScroll: true }); }
   });
 })();
