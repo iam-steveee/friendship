@@ -1,0 +1,63 @@
+/* Custom form styling intentionally reuses the parent site's fonts, colors and backgrounds. */
+.custom-form-page { background-image: linear-gradient(rgba(255,244,248,.18),rgba(255,244,248,.18)), url("../assets/background-mobile.jpg"); }
+.form-shell { width: min(100% - 28px, 820px); margin: 0 auto; padding: 18px 0 32px; animation: rise-in .7s cubic-bezier(.2,.75,.2,1) both; }
+.back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--rose-dark); text-decoration: none; font-size: .95rem; padding: 8px 0; }
+.back-link:hover { text-decoration: underline; }
+.form-heading { text-align: center; padding: 14px 10px 20px; }
+.form-flower { display: block; color: var(--gold); font-size: 1.8rem; line-height: 1.2; }
+.form-heading h1 { margin: 7px 0 12px; font-size: clamp(2.5rem, 8vw, 4.1rem); }
+.form-description { max-width: 610px; margin: 0 auto 14px; line-height: 1.7; }
+.privacy-chip { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(197,76,123,.22); border-radius: 999px; padding: 5px 12px; background: rgba(255,249,251,.72); font-size: .83rem; color: var(--rose-dark); }
+.progress-wrap { margin: 8px 0 18px; padding: 0 4px; }
+.progress-meta { display: flex; justify-content: space-between; gap: 12px; font-size: .82rem; color: #8d526a; margin-bottom: 7px; }
+.progress-track { height: 7px; overflow: hidden; border-radius: 99px; background: rgba(255,255,255,.75); box-shadow: inset 0 1px 3px #78314a15; }
+.progress-bar { height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg,#e78eb0,#b94275); transition: width .35s ease; }
+.question-card, .success-card, .error-card {
+  padding: clamp(22px,5vw,42px); border: 1px solid rgba(255,255,255,.84); border-radius: 22px;
+  background: rgba(255,249,251,.91); box-shadow: 0 18px 60px rgba(126,55,82,.12), inset 0 1px 0 #fff;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.question-card { animation: rise-in .45s ease both; }
+.section-kicker { color: #aa5b7a; font-size: .76rem; letter-spacing: .13em; font-family: "Handwriting", cursive; text-align: center; }
+.question-card h2, .success-card h2, .error-card h2 { margin: 5px 0 10px; text-align: center; font-size: clamp(2rem,7vw,3rem); }
+.field-hint, .branch-description { text-align: center; margin: 0 auto 24px; max-width: 560px; font-size: .96rem; }
+.choice-list { display: grid; gap: 11px; }
+.choice-option { position: relative; display: flex; align-items: flex-start; gap: 12px; padding: 13px 15px; border: 1px solid #edc6d5; border-radius: 14px; background: rgba(255,255,255,.7); cursor: pointer; line-height: 1.55; transition: border-color .2s ease, background .2s ease, transform .2s ease, box-shadow .2s ease; }
+.choice-option:hover { border-color: #d98aaa; background: #fff8fb; transform: translateY(-1px); }
+.choice-option:has(input:checked) { border-color: #c54c7b; background: #fff0f6; box-shadow: 0 0 0 2px rgba(197,76,123,.1); }
+.choice-option input { flex: 0 0 auto; width: 18px; height: 18px; margin: 5px 0 0; accent-color: #b94275; }
+.question-block { padding: 22px 0 24px; border-bottom: 1px solid rgba(197,76,123,.15); }
+.question-block:last-child { border-bottom: 0; padding-bottom: 4px; }
+.question-title { display: block; margin: 0 0 12px; color: #6d3b50; font-size: 1.08rem; line-height: 1.55; font-weight: 700; }
+.required-star { color: #b94275; margin-left: 4px; }
+.optional-label { display: inline-block; margin-left: 7px; color: #956779; font-size: .75rem; font-weight: 400; }
+.answer-input, .answer-textarea {
+  display: block; width: 100%; border: 1px solid #e6bacb; border-radius: 12px; padding: 13px 14px;
+  color: #5e3949; background: rgba(255,255,255,.88); font: 1rem/1.55 "Handwriting","Gossamer Body",Georgia,serif;
+  outline: none; transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.answer-input:focus, .answer-textarea:focus { border-color: #bf4e7c; box-shadow: 0 0 0 3px rgba(197,76,123,.13); background: #fff; }
+.answer-textarea { min-height: 120px; resize: vertical; }
+.field-error { min-height: 1.25em; color: #a32252; font-size: .88rem; margin: 9px 0 0; }
+.question-error { color: #a32252; font-size: .84rem; margin: 8px 0 0; }
+.branch-footer { margin-top: 26px; text-align: center; color: var(--rose-dark); white-space: pre-line; font-size: 1.08rem; }
+.form-actions { text-align: center; padding: 24px 8px 6px; }
+.form-actions .cta-button { min-width: min(100%, 240px); justify-content: center; }
+.form-actions .tiny-footnote { max-width: 560px; margin: 14px auto 0; }
+.cta-button { text-decoration: none; border: 0; }
+.cta-button:disabled { opacity: .65; cursor: wait; animation: none; }
+.success-card, .error-card { text-align: center; animation: rise-in .5s ease both; }
+.success-card p, .error-card p { max-width: 570px; margin: 10px auto 18px; }
+.success-star { display: block; font-size: 2rem; color: var(--gold); }
+.success-signature { font-family: "Photograph Signature","Stay With Me",cursive; color: var(--rose-dark); font-size: 3rem; }
+.success-home { display: inline-flex; align-items: center; justify-content: center; margin-top: 8px; }
+.form-footer { text-align: center; color: #874864; padding: 24px 8px 0; font-size: .85rem; }
+.form-footer span { color: #c34f7e; }
+@media (min-width:760px) { .custom-form-page { background-image: linear-gradient(rgba(255,245,249,.13),rgba(255,245,249,.13)), url("../assets/background-desktop.png"); background-size: cover; background-position: center center; } .form-shell { padding-top: 26px; } }
+@media (max-width:480px) { .form-shell { width: min(100% - 18px, 820px); } .question-card,.success-card,.error-card { border-radius: 18px; } .choice-option { padding: 12px; } }
+@media (prefers-reduced-motion:reduce) { .form-shell,.question-card,.success-card,.error-card { animation: none; } .progress-bar,.choice-option,.answer-input,.answer-textarea { transition: none; } }
+
+.step-actions { text-align: center; margin-top: 24px; }
+.step-actions .cta-button { min-width: min(100%, 220px); justify-content: center; }
+.back-step { display: inline-flex; align-items: center; border: 0; padding: 7px 0 14px; background: transparent; color: var(--rose-dark); font: inherit; font-size: .92rem; cursor: pointer; }
+.back-step:hover { text-decoration: underline; }
