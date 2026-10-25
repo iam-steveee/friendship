@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const formUrl = "custom-form/";
+  const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSf8i-aBT4vX4xNbEUkMEsRyS3v1hvcF11MKyITgsljeOW32cQ/viewform?usp=header";
   const welcome = document.getElementById("welcome");
   const openButton = document.getElementById("open-letter");
   const letterSection = document.getElementById("letter-section");
